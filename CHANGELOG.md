@@ -5,6 +5,13 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-27
+
+### Changed
+
+- Tracks `invoice-kit 1.1.0` (VAT-inclusive pricing) and `double-entry 0.1.1` — the estate graph's convergence pins. No behavioural change.
+
+
 ## [0.1.0] - 2026-10-25
 
 Initial release.
