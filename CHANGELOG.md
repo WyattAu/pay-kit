@@ -5,6 +5,13 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-10-27
+
+### Changed
+
+- Tracks `invoice-kit 1.1.1` (BR-CO coverage constants). No behavioural change.
+
+
 ## [0.1.1] - 2026-10-27
 
 ### Changed
