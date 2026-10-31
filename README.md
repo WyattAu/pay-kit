@@ -12,7 +12,7 @@ via [`invoice-kit`](https://crates.io/crates/invoice-kit).
 **Verification** is constant-time HMAC-SHA256 applied to two providers'
 schemes: Stripe's timestamped `t=…,v1=…` header (replay-tolerance window,
 key-rotation support) and GoCardless's plain body signature. **Settlement**
-is an accounting act — bank debited, debtor credited, allocation applied to
+is an accounting act; bank debited, debtor credited, allocation applied to
 the invoice. One crate because the seam between them is where payment fraud
 actually lands: a webhook that verifies but does not reconcile is a
 notification; one that reconciles without verifying is a remote posting API.
@@ -22,18 +22,18 @@ notification; one that reconciles without verifying is a remote posting API.
 **Verify first, parse second, post last.** The signature covers the raw
 bytes, so any parse-before-verify hands an attacker a parse gadget that runs
 on unauthenticated input. A settlement is posted only from a *verified,
-parsed* event — never from the raw body.
+parsed* event; never from the raw body.
 
 ## Caller notes
 
 - Stripe redelivers on failure: key your deduplication on the **event id**,
-  not the payment id — the same payment id legitimately appears in
+  not the payment id; the same payment id legitimately appears in
   redeliveries.
 - The signature covers the body **as received**: no re-serialisation between
   the wire and this crate, or verification breaks (which is the point).
 - `post_settlement` and `allocate` are deliberately separate: the posting is
   a *cash* act, the allocation a *documents* act, and a caller doing only one
-  has either a paid invoice with no cash or cash with no paid invoice — the
+  has either a paid invoice with no cash or cash with no paid invoice; the
   split makes the half-done state nameable.
 
 ## Licence
