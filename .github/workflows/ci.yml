@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    uses: WyattAu/engineering-standards/.github/workflows/rust-kit.yml@main
+    with:
+      tier: c            # onboarding tier — informational coverage; promote to b once measured
+      all-features: true
